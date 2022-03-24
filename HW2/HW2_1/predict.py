@@ -219,7 +219,7 @@ batch_size = 64
 feature_size = 4096
 seq_len = 80
 s2vt_model = S2VT(feature_size,VOCAB_SIZE,hidden_size,seq_len,MAXLEN,batch_size)
-s2vt_model.load_state_dict(torch.load("s2vt_model"))
+s2vt_model.load_state_dict(torch.load("seq2seq_model"))
 s2vt_opti = optim.Adam(s2vt_model.parameters(), lr = 0.001)
 
 print("S2VT model parameters count: %d" % (count_parameters(s2vt_model)))

@@ -3,7 +3,6 @@
 
 # In[1]:
 
-
 import numpy as np
 import pickle
 import pandas as pd
@@ -149,9 +148,7 @@ valid_frames = Variable(torch.FloatTensor(valid_frames).transpose(0,1))
 valid_target = Variable(torch.LongTensor(valid_target).view(-1, MAXLEN))
 valid_frames.size(), valid_target.size()
 
-
 # In[3]:
-
 
 class Attn(nn.Module):
     def __init__(self, batch_size, hidden_size, dropout=0.3):
@@ -314,16 +311,13 @@ class S2VT(nn.Module):
             loss += F.nll_loss(decoder_output, cap_seq[:,step])
         return loss
 
-
 # In[4]:
-
 
 def count_parameters(model):
     return sum(p.numel() for p in model.parameters() if p.requires_grad)
 
 
 # In[4]:
-
 
 hidden_size = 512
 batch_size = 64
@@ -336,17 +330,13 @@ s2vt_opti = optim.Adam(s2vt_model.parameters(), lr = 0.001)
 
 print("S2VT model parameters count: %d" % (count_parameters(s2vt_model)))
 
-
 # In[7]:
-
 
 epoches = 100
 min_train_loss = 99
 training_loss=[]
 
-
 # In[9]:
-
 
 for epoch in range(epoches+1):
     s2vt_model.train()
@@ -370,12 +360,9 @@ for epoch in range(epoches+1):
         torch.save(s2vt_model.state_dict(), "model/s2vt")
     training_loss.append(train_loss)
     print("[Epoch %d] Loss: %f" % (epoch+1, epoch_losses/iter_size))
-          
-          
 
-
+    
 # In[10]:
-
 
 test_frames = {}
 test_label = pd.read_json(test_label_file).set_index('id')
@@ -403,7 +390,6 @@ with open('result.txt', 'w') as result_file:
 
 
 # In[11]:
-
 
 import matplotlib.pyplot as plt
 plt1=plt.figure(figsize=(10, 6))
