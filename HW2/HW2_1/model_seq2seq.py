@@ -357,7 +357,7 @@ for epoch in range(epoches+1):
     train_loss= epoch_losses/iter_size
     if train_loss < min_train_loss:
         min_train_loss = train_loss
-        torch.save(s2vt_model.state_dict(), "model/s2vt")
+        torch.save(s2vt_model.state_dict(), "seq2seq_model")
     training_loss.append(train_loss)
     print("[Epoch %d] Loss: %f" % (epoch+1, epoch_losses/iter_size))
 
